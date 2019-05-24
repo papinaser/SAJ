@@ -1,0 +1,34 @@
+html,body{
+  direction: rtl;
+}
+
+@font-face {
+  font-family: titr;
+  src: url('/assets/fonts/BTitrBd.ttf');
+}
+@font-face {
+  font-family: normal;
+  src: url('assets/fonts/BNazanin.ttf');
+}
+
+body {
+  margin: 0;
+  font-family: normal, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url("assets/img/bg.jpg");
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@media screen and (min-width: 480px) {
+  body{
+    background-size:cover;
+  }
+
+}
