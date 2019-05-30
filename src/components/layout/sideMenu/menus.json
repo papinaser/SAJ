@@ -1,0 +1,21 @@
+[{
+  "url": "/dashboard",
+  "title": "داشبورد",
+  "icon": "dashboard"
+},{
+  "url": "/rqsKala",
+  "title": "درخواست خرید/کالا",
+  "icon": "web"
+},{
+  "url": "/manbaKharid",
+  "title": "منابع خرید",
+  "icon": "shopping_cart"
+},{
+  "url": "/about",
+  "title": "درباره ما",
+  "icon": "info"
+},{
+  "url": "/signIn",
+  "title": "ورود به سیستم",
+  "icon": "input"
+}]
