@@ -1,5 +1,5 @@
 export const saveInLocalDb=(key,value)=>{
-    if (typeof of (value)==="object"){
+    if (typeof (value)==="object"){
         localStorage.setItem(key,JSON.stringify(value))
     }
 };

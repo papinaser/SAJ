@@ -1,8 +1,9 @@
 const drawerWidth = 240;
 
-export const styles = theme => ({
+export const styles = theme=>({
     root: {
         display: 'flex',
+        fontFamily:"normal"
     },
     toolbar: {
         paddingLeft: 24, // keep right padding when drawer closed
@@ -36,8 +37,13 @@ export const styles = theme => ({
     menuButtonHidden: {
         display: 'none',
     },
-    title: {
-        flexGrow: 1,
+    menuItemIcon:{
+        marginLeft:'16px'
+    },
+    pageTitle: {
+        flexGrow:1,
+        display: "flex",
+        flexFlow:"row"
     },
     drawerPaper: {
         position: 'relative',

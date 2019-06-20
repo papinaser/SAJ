@@ -1,23 +1,32 @@
-import {SIDE_MENU_CLOSE,
+import {
+    SIDE_MENU_CLOSE,
     SERVER_REQUESTING,
     SERVER_CALLED_BACKED,
     LOGIN_USER,
-    SHOW_SNACKBAR,USER_PERMITS_LOADED} from "../actionTypes";
+    SHOW_SNACKBAR, USER_PERMITS_FETCGED
+} from "../actionTypes";
 
-import {USER_INFO} from "../../services/enums"
-import {saveInLocalDb} from "../../services/global";
+import {USER_INFO,USER_PERMITS} from "../../services/enums"
+import {getFromLocalDb, saveInLocalDb} from "../../services/global";
+import {currentUser} from "../../services/accessManager";
 
 
-const defaultState={
-    sideMenuIsClose:true,
-    isLoading:false,
-    visibleSnackbar:false,
-    snackbarMessage:"",
-    snackbarType:"",
-    userLoggedIn:false,
-    userTitle:"",
-    userToken:"",
-    userPermits:{}
+const defaultState=()=>{
+    const curUser = currentUser();
+    const currentPermits= getFromLocalDb(USER_PERMITS);
+    return(
+        {
+            sideMenuIsClose: true,
+            isLoading: false,
+            visibleSnackbar: false,
+            snackbarMessage: "",
+            snackbarType: "",
+            userLoggedIn: curUser!==null,
+            userTitle: curUser!==null?curUser.title:"",
+            userToken: curUser!==null?curUser.username:"",
+            userPermits:currentPermits!=null?currentPermits:[]
+        }
+    );
 };
 const userLoggedIn=(state,payload)=> {
     saveInLocalDb(USER_INFO, payload);
@@ -28,11 +37,12 @@ const userLoggedIn=(state,payload)=> {
     };
     return {...state, ...userInfo};
 };
-
-const userPermidLoaded=(state,payload)=>{
-
+const updateUserPermits=(state,payload)=>{
+    saveInLocalDb(USER_PERMITS,payload.currentPermits);
+    return {...state,userPermits:payload.currentPermits}
 };
-export default (state=defaultState,action)=>{
+
+export default (state=defaultState(),action)=>{
   switch (action.type) {
       case SIDE_MENU_CLOSE:
           return {...state,sideMenuIsClose:action.payload};
@@ -44,6 +54,8 @@ export default (state=defaultState,action)=>{
           return {...state,...action.payload};
       case LOGIN_USER:
           return userLoggedIn(state,action.payload);
+      case USER_PERMITS_FETCGED:
+          return updateUserPermits(state,action.payload);
       default:
           return state;
   }

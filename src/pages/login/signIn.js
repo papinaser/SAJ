@@ -117,6 +117,5 @@ const mapActionsToProps=(dispatch)=>({
    callbackAction:(payload)=>dispatch(serverCalledBackAction(payload)),
     showSnackbar:(payload)=>dispatch(showSnackBar(payload)),
     userLoggedInAction:(payload)=>dispatch(userLoggedInAction(payload))
-
 });
 export default connect(null,mapActionsToProps)(withRouter(withStyles(styles)(SignIn)));
